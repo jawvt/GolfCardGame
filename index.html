@@ -244,23 +244,11 @@
         }
 
         // ================================================================
-        // Generate Center Content (multiple suit symbols for numbered cards)
+        // Generate Center Content (single suit symbol for all cards)
         // ================================================================
         function getCenterContent(rank, suit) {
-            const rankNum = parseInt(rank);
             const symbol = suitSymbols[suit];
-
-            // For face cards and Ace, show just one symbol
-            if (isNaN(rankNum)) {
-                return `<div style="font-size: 3em;">${symbol}</div>`;
-            }
-
-            // For numbered cards, show multiple small symbols in a grid
-            let pips = '';
-            for (let i = 0; i < rankNum; i++) {
-                pips += `<div class="pip">${symbol}</div>`;
-            }
-            return pips;
+            return symbol;
         }
 
         // ================================================================
