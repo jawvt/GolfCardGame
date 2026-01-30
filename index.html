@@ -218,6 +218,36 @@
         };
 
         // ================================================================
+        // Get Card Rank Display (K, Q, J, A, or number)
+        // ================================================================
+        function getRankDisplay(rank) {
+            const rankMap = {
+                'King': 'K',
+                'Queen': 'Q',
+                'Jack': 'J',
+                'Ace': 'A'
+            };
+            return rankMap[rank] || rank;
+        }
+
+        // ================================================================
+        // Generate Center Content (multiple suit symbols for numbered cards)
+        // ================================================================
+        function getCenterContent(rank, suit) {
+            const rankNum = parseInt(rank);
+            const symbol = suitSymbols[suit];
+
+            // For face cards and Ace, show just one symbol
+            if (isNaN(rankNum)) {
+                return symbol;
+            }
+
+            // For numbered cards, show multiple symbols arranged in a grid
+            const symbols = Array(rankNum).fill(symbol).join(' ');
+            return `<div style="font-size: 2.5em; line-height: 1.2;">${symbols}</div>`;
+        }
+
+        // ================================================================
         // Draw Card Function - Called when button is clicked
         // ================================================================
         function drawCard() {
@@ -225,16 +255,18 @@
             const cardDisplay = document.getElementById('cardDisplay');
             const color = cardColors[card.suit];
             const suit = suitSymbols[card.suit];
+            const rankDisplay = getRankDisplay(card.rank);
+            const centerContent = getCenterContent(card.rank, card.suit);
 
             cardDisplay.innerHTML = `
                 <div class="card ${color}">
                     <div class="card-corner top">
-                        <div class="card-rank">${card.rank}</div>
+                        <div class="card-rank">${rankDisplay}</div>
                         <div class="card-suit">${suit}</div>
                     </div>
-                    <div class="card-center">${suit}</div>
+                    <div class="card-center">${centerContent}</div>
                     <div class="card-corner bottom">
-                        <div class="card-rank">${card.rank}</div>
+                        <div class="card-rank">${rankDisplay}</div>
                         <div class="card-suit">${suit}</div>
                     </div>
                 </div>
