@@ -116,6 +116,19 @@
         .card-center {
             font-size: 4em;
             font-weight: bold;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .pip {
+            font-size: 0.8em;
+            line-height: 1;
         }
 
         .card-rank {
@@ -239,12 +252,15 @@
 
             // For face cards and Ace, show just one symbol
             if (isNaN(rankNum)) {
-                return symbol;
+                return `<div style="font-size: 3em;">${symbol}</div>`;
             }
 
-            // For numbered cards, show multiple symbols arranged in a grid
-            const symbols = Array(rankNum).fill(symbol).join(' ');
-            return `<div style="font-size: 2.5em; line-height: 1.2;">${symbols}</div>`;
+            // For numbered cards, show multiple small symbols in a grid
+            let pips = '';
+            for (let i = 0; i < rankNum; i++) {
+                pips += `<div class="pip">${symbol}</div>`;
+            }
+            return pips;
         }
 
         // ================================================================
