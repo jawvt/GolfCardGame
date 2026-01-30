@@ -231,6 +231,35 @@
         };
 
         // ================================================================
+        // Golf Club Mappings (Rank to Club)
+        // ================================================================
+        const clubMapping = {
+            'Ace': 'Driver',
+            'King': '5 Wood',
+            'Queen': 'Driver',
+            'Jack': '60° Wedge',
+            '10': '56° Wedge',
+            '9': '52° Wedge',
+            '8': 'P-Wedge',
+            '7': '9 Iron',
+            '6': '8 Iron',
+            '5': '7 Iron',
+            '4': '6 Iron',
+            '3': '5 Iron',
+            '2': '4 Iron'
+        };
+
+        // ================================================================
+        // Golf Shot Type Mappings (Suit to Shot Type)
+        // ================================================================
+        const shotTypeMapping = {
+            'Hearts': 'Straight',
+            'Diamonds': 'Fade',
+            'Spades': 'Draw',
+            'Clubs': 'Stinger'
+        };
+
+        // ================================================================
         // Get Card Rank Display (K, Q, J, A, or number)
         // ================================================================
         function getRankDisplay(rank) {
@@ -262,6 +291,11 @@
             const rankDisplay = getRankDisplay(card.rank);
             const centerContent = getCenterContent(card.rank, card.suit);
 
+            // Get golf club and shot type
+            const club = clubMapping[card.rank];
+            const shotType = shotTypeMapping[card.suit];
+            const golfInstruction = `${shotType} ${club}`;
+
             cardDisplay.innerHTML = `
                 <div class="card ${color}">
                     <div class="card-corner top">
@@ -273,6 +307,9 @@
                         <div class="card-rank">${rankDisplay}</div>
                         <div class="card-suit">${suit}</div>
                     </div>
+                </div>
+                <div style="margin-top: 20px; font-size: 1.3em; font-weight: bold; color: #1e3c72;">
+                    Hit: ${golfInstruction}
                 </div>
             `;
         }
