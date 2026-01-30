@@ -70,5 +70,5 @@ if __name__ == "__main__":
     random_card = deck.get_random_card()
     
     # Display the random card
-    print(f"🎴 Your card: {random_card}")
-    print(f"📊 Total cards in deck: {deck.deck_size()}")
+    print(f"Your card: {random_card}")
+    print(f"Total cards in deck: {deck.deck_size()}")
