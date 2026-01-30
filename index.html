@@ -66,16 +66,65 @@
             align-items: center;
         }
 
-        .card-text {
-            color: white;
-            font-size: 2.5em;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
         .placeholder-text {
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.2em;
+        }
+
+        /* ================================================================
+           Playing Card Styles
+           ================================================================ */
+        .card {
+            width: 200px;
+            height: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #ddd;
+            position: relative;
+        }
+
+        .card.red {
+            color: #e74c3c;
+        }
+
+        .card.black {
+            color: #000;
+        }
+
+        .card-corner {
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .card-corner.top {
+            align-self: flex-start;
+        }
+
+        .card-corner.bottom {
+            align-self: flex-end;
+            transform: rotate(180deg);
+        }
+
+        .card-center {
+            font-size: 4em;
+            font-weight: bold;
+        }
+
+        .card-rank {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .card-suit {
+            font-size: 1.5em;
         }
 
         /* ================================================================
@@ -152,12 +201,44 @@
         const deck = new Deck();
 
         // ================================================================
+        // Suit Symbols and Colors
+        // ================================================================
+        const suitSymbols = {
+            'Hearts': '♥',
+            'Diamonds': '♦',
+            'Clubs': '♣',
+            'Spades': '♠'
+        };
+
+        const cardColors = {
+            'Hearts': 'red',
+            'Diamonds': 'red',
+            'Clubs': 'black',
+            'Spades': 'black'
+        };
+
+        // ================================================================
         // Draw Card Function - Called when button is clicked
         // ================================================================
         function drawCard() {
             const card = deck.getRandomCard();
             const cardDisplay = document.getElementById('cardDisplay');
-            cardDisplay.innerHTML = `<div class="card-text">${card.rank} of ${card.suit}</div>`;
+            const color = cardColors[card.suit];
+            const suit = suitSymbols[card.suit];
+
+            cardDisplay.innerHTML = `
+                <div class="card ${color}">
+                    <div class="card-corner top">
+                        <div class="card-rank">${card.rank}</div>
+                        <div class="card-suit">${suit}</div>
+                    </div>
+                    <div class="card-center">${suit}</div>
+                    <div class="card-corner bottom">
+                        <div class="card-rank">${card.rank}</div>
+                        <div class="card-suit">${suit}</div>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>
