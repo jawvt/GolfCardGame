@@ -53,9 +53,6 @@ class Deck:
         """
         return random.choice(self.cards)
     
-    def deck_size(self):
-        """Return the total number of cards in the deck"""
-        return len(self.cards)
 
 
 # ============================================================================
@@ -71,4 +68,4 @@ if __name__ == "__main__":
     
     # Display the random card
     print(f"Your card: {random_card}")
-    print(f"Total cards in deck: {deck.deck_size()}")
+   
