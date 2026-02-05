@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golf Card Game</title>
+    <title>Golf Shot Challenge</title>
     <style>
-        /* ================================================================
-           Global Styles
-           ================================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -15,46 +12,58 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #1a5d2a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
-        /* ================================================================
-           Container Styles
-           ================================================================ */
         .container {
-            background: white;
-            padding: 40px;
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 30px;
             text-align: center;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
         }
 
-        /* ================================================================
-           Title Styles
-           ================================================================ */
+        /* Logo/Header */
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 8px 20px rgba(44, 95, 45, 0.3);
+        }
+
         h1 {
-            color: #1a5d2a;
-            margin-bottom: 20px;
-            font-size: 2em;
+            color: #1a4d2e;
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1em;
+            color: #6b8e6b;
+            margin-bottom: 45px;
+            font-size: 1.15em;
+            font-weight: 400;
         }
 
-        /* ================================================================
-           Card Display Area
-           ================================================================ */
+        /* Card Display */
         .card-display {
-            padding: 30px;
-            margin-bottom: 30px;
+            min-height: 340px;
+            margin-bottom: 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -62,37 +71,51 @@
         }
 
         .placeholder-text {
-            color: #666;
-            font-size: 1em;
+            color: #b0c4b0;
+            font-size: 1.2em;
+            font-weight: 300;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* ================================================================
-           Playing Card Styles
-           ================================================================ */
+        .placeholder-icon {
+            font-size: 60px;
+            opacity: 0.3;
+        }
+
+        /* Playing Card */
         .card {
-            width: 150px;
-            height: 210px;
+            width: 160px;
+            height: 220px;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 8px;
-            border: 2px solid #ddd;
+            padding: 10px;
+            border: 3px solid #f0f0f0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
         .card.red {
-            color: #e74c3c;
+            color: #dc3545;
         }
 
         .card.black {
-            color: #000;
+            color: #1a1a1a;
         }
 
         .card-corner {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             line-height: 1;
             text-align: center;
@@ -108,78 +131,189 @@
         }
 
         .card-center {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: bold;
         }
 
         .card-rank {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
         }
 
         .card-suit {
-            font-size: 1.2em;
+            font-size: 1.3em;
         }
 
-        /* ================================================================
-           Button Styles
-           ================================================================ */
-        button {
-            background: #1a5d2a;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        /* Shot Instruction */
+        .shot-display {
+            margin-top: 25px;
+            padding: 25px 35px;
+            background: linear-gradient(135deg, #2c5f2d 0%, #3d7c3f 100%);
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(44, 95, 45, 0.25);
+        }
+
+        .shot-label {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
             font-weight: 600;
         }
 
+        .shot-text {
+            font-size: 2em;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Button */
+        button {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-size: 1.2em;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 25px rgba(44, 95, 45, 0.35);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
         button:hover {
-            background: #0f3d1a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(44, 95, 45, 0.45);
         }
 
         button:active {
-            transform: scale(0.98);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(44, 95, 45, 0.35);
         }
 
-        /* ================================================================
-           Golf Instruction Styles
-           ================================================================ */
-        .golf-instruction {
-            margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #1a5d2a;
+        /* Fade Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-display > * {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+                margin-bottom: 35px;
+            }
+
+            .card {
+                width: 140px;
+                height: 195px;
+            }
+
+            .card-center {
+                font-size: 3em;
+            }
+
+            .shot-text {
+                font-size: 1.6em;
+            }
+
+            button {
+                padding: 16px 50px;
+                font-size: 1.05em;
+            }
+        }
+
+        /* Golf-themed accents */
+        .golf-accent {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 200px;
+            color: #2c5f2d;
+            pointer-events: none;
+        }
+
+        .golf-accent.top-left {
+            top: 10%;
+            left: 5%;
+        }
+
+        .golf-accent.bottom-right {
+            bottom: 10%;
+            right: 5%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Golf Card Game</h1>
-        <p class="subtitle">Draw a card to see your shot</p>
+    <!-- Decorative golf flag accents -->
+    <div class="golf-accent top-left">⛳</div>
+    <div class="golf-accent bottom-right">🏌️</div>
 
-        <!-- Card Display Area -->
+    <div class="container">
+        <!-- Golf Ball Logo -->
+        <div class="logo">⛳</div>
+        
+        <h1>Shot Challenge</h1>
+        <p class="subtitle">Draw your next golf shot</p>
+
+        <!-- Card Display -->
         <div class="card-display" id="cardDisplay">
-            <p class="placeholder-text">Click Draw to begin</p>
+            <div class="placeholder-text">
+                <div class="placeholder-icon">🃏</div>
+                <span>Tap draw to start</span>
+            </div>
         </div>
 
-        <!-- Draw Card Button -->
-        <button onclick="drawCard()">Draw</button>
+        <!-- Draw Button -->
+        <button onclick="drawCard()">Draw Shot</button>
     </div>
 
     <script>
-        // ================================================================
-        // Deck Class - Manages all 52 standard playing cards
-        // ================================================================
         class Deck {
             constructor() {
                 this.cards = [];
                 this.createDeck();
             }
 
-            // Create all 52 cards (4 suits × 13 ranks)
             createDeck() {
                 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
                 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
@@ -191,20 +325,13 @@
                 }
             }
 
-            // Get a random card from the deck
             getRandomCard() {
                 return this.cards[Math.floor(Math.random() * this.cards.length)];
             }
         }
 
-        // ================================================================
-        // Initialize the deck when page loads
-        // ================================================================
         const deck = new Deck();
 
-        // ================================================================
-        // Suit Symbols and Colors
-        // ================================================================
         const suitSymbols = {
             'Hearts': '♥',
             'Diamonds': '♦',
@@ -219,9 +346,6 @@
             'Spades': 'black'
         };
 
-        // ================================================================
-        // Golf Club Mappings (Rank to Club)
-        // ================================================================
         const clubMapping = {
             'Ace': 'Driver',
             'King': '5 Wood',
@@ -238,9 +362,6 @@
             '2': '4 Iron'
         };
 
-        // ================================================================
-        // Golf Shot Type Mappings (Suit to Shot Type)
-        // ================================================================
         const shotTypeMapping = {
             'Hearts': 'Straight',
             'Diamonds': 'Fade',
@@ -248,9 +369,6 @@
             'Clubs': 'Stinger'
         };
 
-        // ================================================================
-        // Get Card Rank Display (K, Q, J, A, or number)
-        // ================================================================
         function getRankDisplay(rank) {
             const rankMap = {
                 'King': 'K',
@@ -261,17 +379,10 @@
             return rankMap[rank] || rank;
         }
 
-        // ================================================================
-        // Generate Center Content (single suit symbol for all cards)
-        // ================================================================
         function getCenterContent(rank, suit) {
-            const symbol = suitSymbols[suit];
-            return symbol;
+            return suitSymbols[suit];
         }
 
-        // ================================================================
-        // Draw Card Function - Called when button is clicked
-        // ================================================================
         function drawCard() {
             const card = deck.getRandomCard();
             const cardDisplay = document.getElementById('cardDisplay');
@@ -280,7 +391,6 @@
             const rankDisplay = getRankDisplay(card.rank);
             const centerContent = getCenterContent(card.rank, card.suit);
 
-            // Get golf club and shot type
             const club = clubMapping[card.rank];
             const shotType = shotTypeMapping[card.suit];
             const golfInstruction = `${shotType} ${club}`;
@@ -297,8 +407,9 @@
                         <div class="card-suit">${suit}</div>
                     </div>
                 </div>
-                <div style="margin-top: 20px; font-size: 1.3em; font-weight: bold; color: #1e3c72;">
-                    Hit: ${golfInstruction}
+                <div class="shot-display">
+                    <div class="shot-label">Your Shot</div>
+                    <div class="shot-text">${golfInstruction}</div>
                 </div>
             `;
         }
